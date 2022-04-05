@@ -33,5 +33,5 @@ for message in consumer:
         )
     )
     s3object.put(
-        Body=(bytes(json.dumps(message[6]).encode('UTF-8')))
+        Body=(bytes(message[6]))
     )
