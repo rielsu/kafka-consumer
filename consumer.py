@@ -18,7 +18,7 @@ s3 = boto3.resource('s3', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access
 s3object = s3.Object( 
     BUCKET_NAME,
     '{today}/kafka_test_{now}.json'.format(
-        today=str(datetime.today()),
+        today=datetime.today().strftime('%Y-%m-%d'),
         now=str(datetime.now())
     )
 )
