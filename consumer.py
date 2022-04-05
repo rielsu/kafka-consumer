@@ -12,7 +12,6 @@ KAFKA_BROKER = os.getenv('KAFKA_BROKER').split(',')
 consumer = KafkaConsumer ('demo-kafka-topic',bootstrap_servers = KAFKA_BROKER)
 
 s3 = boto3.resource('s3', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-#s3 = boto3.resource('s3', aws_access_key_id='AKIAVK3WWRUFTXGKLZKM', aws_secret_access_key='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')
 s3object = s3.Object( 
     BUCKET_NAME,
     '{today}/kafka_test_{now}.json'.format(
