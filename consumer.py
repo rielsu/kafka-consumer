@@ -2,7 +2,10 @@ import json
 import boto3   
 import os 
 from kafka import KafkaConsumer
-from datetime import date, datetime
+from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BUCKET_NAME = os.getenv('BUCKET_NAME')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
@@ -30,29 +33,5 @@ for message in consumer:
         )
     )
     s3object.put(
-        #Body=(bytes(json.dumps(message[6]).encode('UTF-8')))
-        Body=(bytes(json.dumps(message[6])))
+        Body=(bytes(json.dumps(message[6]).encode('UTF-8')))
     )
-
-# json_data = {
-# 'eventId': '7a378b69-673a-4fbd-935a-84c2af636f9d',
-# 'eventDate': '2022-04-04 14:26:30.817654',
-# 'businessProcess': 'PolicyEnrollment',
-# 'eventClass': 'CaseEvent', 'eventType': 'CaseChange',
-# 'eventStatus': 'Success', 'market': 'Broad', 'sourceSystem': 'Intake',
-# 'sourceState': {'3rdParty': 'LexisNexis', '3rdPartyService': 'Risk Classifier'}
-# }
-
-
-
-
-'''
-{
-'eventId': '7a378b69-673a-4fbd-935a-84c2af636f9d',
-'eventDate': '2022-04-04 14:26:30.817654',
-'businessProcess': 'PolicyEnrollment',
-'eventClass': 'CaseEvent', 'eventType': 'CaseChange',
-'eventStatus': 'Success', 'market': 'Broad', 'sourceSystem': 'Intake',
-'sourceState': {'3rdParty': 'LexisNexis', '3rdPartyService': 'Risk Classifier'}
-}
-'''
