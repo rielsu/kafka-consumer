@@ -23,9 +23,16 @@ s3object = s3.Object(
 
 for message in consumer:
     print(message)
+    s3object = s3.Object( 
+        BUCKET_NAME,
+        '{today}/kafka_test_{now}.json'.format(
+            today=str(datetime.today()),
+            now=str(datetime.now())
+        )
+    )
     s3object.put(
         #Body=(bytes(json.dumps(message[6]).encode('UTF-8')))
-        Body=(bytes(message[6]))
+        Body=(bytes(json.dumps(message[6])))
     )
 
 # json_data = {
