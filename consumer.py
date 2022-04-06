@@ -15,20 +15,13 @@ KAFKA_BROKER = os.getenv('KAFKA_BROKER').split(',')
 consumer = KafkaConsumer ('demo-kafka-topic',bootstrap_servers = KAFKA_BROKER)
 
 s3 = boto3.resource('s3', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-s3object = s3.Object( 
-    BUCKET_NAME,
-    '{today}/kafka_test_{now}.json'.format(
-        today=datetime.today().strftime('%Y-%m-%d'),
-        now=str(datetime.now())
-    )
-)
 
 for message in consumer:
     print(message)
     s3object = s3.Object( 
         BUCKET_NAME,
         '{today}/kafka_test_{now}.json'.format(
-            today=str(datetime.today()),
+            today=datetime.today().strftime('%Y-%m-%d'),
             now=str(datetime.now())
         )
     )
