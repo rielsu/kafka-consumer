@@ -28,6 +28,5 @@ for message in consumer:
     )
     data = eval(literal_eval(message[6].decode('utf-8'))['data'])
     s3object.put(
-        #Body=(bytes(message[6]))
         Body=(json.dumps(data, indent=4, sort_keys=True))
     )
