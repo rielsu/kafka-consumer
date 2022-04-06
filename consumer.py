@@ -26,6 +26,7 @@ for message in consumer:
         )
     )
     my_json = message[6].decode('utf8').replace("'", '"')
+    print(my_json)
     data = json.loads(my_json)
     s3object.put(
         #Body=(bytes(message[6]))
