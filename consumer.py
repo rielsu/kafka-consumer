@@ -25,9 +25,9 @@ for message in consumer:
             now=str(datetime.now())
         )
     )
-    my_json = message[6].decode('utf8').replace("'", '"')
+    my_json = message[6].decode('utf8')
     print(my_json)
-    data = json.loads(my_json['data'])
+    data = json.loads(my_json)
     s3object.put(
         #Body=(bytes(message[6]))
         Body=(json.dumps(data, indent=4, sort_keys=True))
